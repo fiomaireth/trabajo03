@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Agregar Usuario</h1>
+<div mat-dialog-content>
+  <form [formGroup]="productForm">
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input formControlName="userName" matInput placeholder="Nombre">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de cumpleaños</mat-label>
+      <input formControlName="date" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <label for="">
+      
+      <h3>Sexo</h3>
+    </label><br>
+    <mat-radio-group formControlName="sexo" class="example-radio-group">
+      <mat-radio-button class="example-radio-button" *ngFor="let fresh of sexo" [value]="fresh">
+        {{ fresh }}
+      </mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field appearance="outline">
+      <mat-label>Edad</mat-label>
+      <input formControlName="edad" matInput type="number" placeholder="Edad">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Mensaje</mat-label>
+      <textarea formControlName="mensaje" matInput></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addUsuario()">{{ actionBtn }}</button>
+</div>

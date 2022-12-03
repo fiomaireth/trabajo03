@@ -1,0 +1,114 @@
+<app-cabecera></app-cabecera>
+<br>
+<br>
+<br>
+<br>
+<div class="container row">
+    <form (ngSubmit)="submit()" #forma="ngForm">
+        <h1>CONTACTANOS</h1>
+        <hr />
+        <div class="col-md-7">
+            <label for="name" class="form-label"><b>Nombre</b></label>
+            <input type="text"
+                #name="ngModel"
+                [(ngModel)]="register.name"
+                placeholder="Introduzca su nombre"
+                name="name"
+                minlength="3"
+                class="form-control"
+                required
+                [ngClass]="{'is-valid': !name.invalid, 'is-invalid': name.invalid}"
+            />
+            <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+                <div *ngIf="name.hasError('minlength')">
+                    Introduzca un nombre de pila con 5 caracteres mínimo
+                </div>
+                <div *ngIf="name.hasError('required')">
+                    Introduzca un nombre de pila válido por favor
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <label for="dni" class="form-label"><b>DNI</b></label>
+            <input
+                type="text"
+                #dni="ngModel"
+                [(ngModel)]="register.dni"
+                placeholder="Introduzca la correo electrónico"
+                name="dni"
+                class="form-control"
+                required
+                minlength="8"
+                maxlength="8"
+                [ngClass]="{'is-valid': !dni.invalid, 'is-invalid': dni.invalid}"
+                pattern="[0-9]*$"
+            />
+
+            <div class="invalid-feedback" *ngIf="dni.invalid && (dni.dirty || dni.touched)">
+                <div *ngIf="dni.hasError('required')">
+                    Introduzca un DNI válido por favor.
+                </div>
+                <div *ngIf="dni.errors && dni.hasError('pattern')">
+                    El DNI no sigue el formato correcto.
+                </div>
+                <div *ngIf="dni.hasError('minlength')">
+                    Introduzca un dni de 8 digitos.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <label for="email" class="form-label"><b>Correo electrónico</b></label>
+            <input
+                type="email"
+                #email="ngModel"
+                [(ngModel)]="register.email"
+                placeholder="Introduzca la correo electrónico"
+                name="email"
+                class="form-control"
+                required
+                [ngClass]="{'is-valid': !email.invalid, 'is-invalid': email.invalid}"
+                pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+            />
+    
+            <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors && email.hasError('pattern')">
+                    El correo electrónico no es valido.
+                </div>
+                <div *ngIf="email.hasError('required')">
+                Introduzca su correo electronico válido por favor.
+            </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <label for="mensaje" class="form-label"><b>Mensaje</b></label>
+            <textarea
+                type="text"
+                placeholder="Introduzca su mensaje"
+                #mensaje="ngModel"
+                [(ngModel)]="register.mensaje"
+                name="mensaje"
+                class="form-control"
+                maxlength="500"
+                required
+                [ngClass]="{'is-valid': !mensaje.invalid, 'is-invalid': mensaje.invalid}"
+            ></textarea>
+            <div class="invalid-feedback" *ngIf="mensaje.invalid && (mensaje.dirty || mensaje.touched)">
+                <div *ngIf="mensaje.hasError('required')">
+                    El mensaje no puede quedar vacío.
+                </div>
+                <div *ngIf="mensaje.hasError('maxlength')">
+                Debe tener maximo 500 caracteres mínimo.
+            </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg">
+                    <button style="margin-right:10px ;" type="submit" (click)="submit()" class="btn btn-primary" [disabled]="!forma.valid">Registrarse</button>
+                    <button type="reset" class="btn btn-secondary">Cancelar</button>
+                </div>
+                
+            </div>
+        </div>
+    </form>
+    <app-pie></app-pie>
+
